@@ -1,0 +1,195 @@
+Overview of Arrays and Memory:
+
+- Arrays are collection of items of a single type. Integers, strings, etc.
+- Memory is temporary and storage is permanent
+
+Classes and Objects:
+
+- Classes could be understood as a template (blueprint) definition of the methods and variables in a particular kind of object.
+- Objectas are like "variables" with unique attributes and behaviors. They try to represent real objects from the real world.
+- attributes from an object my be called instance variables and function within an object is called methods.
+
+Intodruction to Linked Lists:
+
+- data structure to store a collection of items
+ex:
+- class Box: *Should call Node instead of box
+	head.data - refers to the data inside the given box
+	head.next - refers to the next box
+	head.next.data - refers to the data in the next box
+	head.next.next - refers to the next next box
+- and this is why they are called linked list, because you can only go into one direction.
+- can also create a doubly linked list by adding the "previous" attributes.
+more ex on how to count nodes in a linked list:
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+head = Node(1)
+nodeB = Node(2)
+nodeC = Node(3)
+
+head.next = nodeB
+nodeB.next = nodeC
+
+
+def countnodes(head):
+    i = 0
+    node = head
+    while True:
+        try:
+            node = node.next
+            i += 1
+        except:
+            return i
+
+def countnodes2(head):
+
+    j = 0
+    node = head
+    while True:
+        if node.next != None:
+            j+=1
+            node = node.next
+        if node.next == None:
+            j+=1
+            return j
+
+def countnodes3(head):
+    k = 1
+    node = head
+    while node.next != None:
+        node = node.next
+        k +=1
+    return k
+
+print(countnodes(head))
+print(countnodes2(head))
+print(countnodes3(head))
+
+Introduction to Recursion:
+
+- a way of solving a problem by having a function call itself.
+
+Ex:
+
+def fact(n):
+
+    if n >= 1:
+        return n*fact(n-1)
+    else:
+        return 1
+
+print(fact(50))
+
+another example but with Fibonacci sequence:
+
+def fib(n):
+    if n >= 3:
+        return fib(n-1)+fib(n-2)
+    else:
+        return 1
+print(fib(8))
+
+- we can also implement dynamic programming to help or recursion
+	1. Recursion
+	2. Store (memoize)
+	3. Bottom up
+	
+	Notice how in the first example, we have to calculate the fib(2) 3 times, fib(3) 2 times and etc.
+	So, we can store the return value for fib(2), so if we need to calculate i again, we can skip
+		the calculation and go directly to the result, saving us time and memory space
+
+Memoized Solution:
+	
+	we are going to create an array of len(n) to store the results of fib(n) and initially we are goin g to set all of the values to None.
+
+# need to initialize the array before calling the function
+def fib(n, memo)
+	if memo[n] != None:
+		return memo[n]
+	if n == 1 or n == 2
+		result = 1
+	else:
+		return == fib(n-1) + fib(n-2)
+	memo[n] = result
+	return result
+
+	Bottom up approach:
+		we are creating an array called bottom up that stores the values from left to right
+		
+	
+	def fib_bottom_up(n):
+		if n == 1 or n == 2:
+			return 1
+		bottom_up = [n+1]
+		bottom_up[1] = 1
+		bottom_up[2] = 1
+		for i from 3 upto n:
+			bottom_up[i] = bottom_up[i-1]+bottom_up[i-2]
+		return bottom_up[n]
+
+EX of how to do it in python:
+
+def num_ways(n):
+    if n == 0 or n == 1:
+        return 1
+
+    bottom_up = [0]*(n+1)
+
+    bottom_up[0] = 1
+    bottom_up[1] = 1
+
+    for i in range(2, n+1):
+        bottom_up[i] = bottom_up[i-1]+bottom_up[i-2]
+    print(bottom_up)
+
+    return bottom_up[n]
+
+print(num_ways(3))
+
+Introduction to Big O Notation and Time Complexity:
+
+- time it takes to run the size of the input to your function:
+- how does the runtime of this function grow?
+- to define the runtime of space and time, we use Big O Notation and Time Complexity
+- Linear time = O(n), constant time = O(1), quadratic time = O(nˆ2).
+- how to find out the runtime complexity:
+    - find the fastest growing term
+    - take out the coefficient
+- one advantage of using big O is finding the result independent of the environment
+- allow you to quickly compare multiple functions in terms of their performances
+- steps to find bigO again:
+    - checking the bigO of each line or process, for ex:
+        def stupid_function(array):
+            total = 0 -> this line is O(1)
+            return total -> this line is also O(1)
+    now, add them up and check what is the big O for it:
+    C = constant
+        T = O(1) + O(1) = c1 + c2, therefore = c3 = c3*1 which is equal to O(1).
+        It means that if you only have O(1), the runtime is gonna be O(1)
+    - another EX:
+        def find_sum(array):
+        total = 0 -> O(1)
+        for each i in array: -> O(1)
+            total += i -> O(1)
+        return total -> O(1)
+        T = O(1) + n*O(1) + O(1)
+        T = O(1)
+    - another EX:
+    array_2d = [[1,4,3],
+                [3,1,9],
+                [0,5,2]]
+    def find_sum_2d(array_2d):
+        total = 0 -> O(1)
+        for each row in array_2d: -> double for loop is nˆ2*O(1)
+            for each i in row:
+                total += i O(1)
+        return total O(1)
+        T = O(1) + nˆ2*O(1) + O(1)
+        T = c + nˆ2*c
+        T = O(nˆ2)
+
+
