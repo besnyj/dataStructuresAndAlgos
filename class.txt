@@ -177,7 +177,7 @@ Introduction to Big O Notation and Time Complexity:
             total += i -> O(1)
         return total -> O(1)
         T = O(1) + n*O(1) + O(1)
-        T = O(1)
+        T = O(n)
     - another EX:
     array_2d = [[1,4,3],
                 [3,1,9],
@@ -192,4 +192,102 @@ Introduction to Big O Notation and Time Complexity:
         T = c + nˆ2*c
         T = O(nˆ2)
 
+- exercises:
+        int product(int a, int b) {
+        int sum = 0; -> O(1)
+        for (int I = 0; I < b; I++) { -> O(n)
+            sum += a; -> O(1)
+        }
+        return sum; -> O(1)
+    }
+
+    T = O(1) + O(1) + O(1) + n*O(1)
+    T = c1 + c2 + c3 + n*c4
+    T = O(n), linear runtime
+
+    -----------------------------------
+        static int power(int a, int b) {
+        if (b < 0) return a; -> O(1)
+        if (b == 0) return 1; -> O(1)
+        int sum = a; -> O(1)
+        for (int I = 0; I < b - 1; I++) { -> O(n)
+            sum *= a; -> O(1)
+        }
+        return sum; -> O(1)
+    }
+
+    T = O(1) + O(1) + O(1) + n*O(1) + O(1)
+    T = c1 + c2 + c3 + n*c4 + c5
+    T = O(n), linear runtime
+
+    ------------------------------------
+        int mod(int a, int b) {
+        if (b <=a) return -1; -> O(1)
+        int div = a / b; -> O(1)
+        return a - div * b; - O(1)
+    }
+
+    T = O(1) + O(1) + O(1)
+    T = c1 + c2 + c3
+    T = O(1), constant runtime
+
+    -------------------------------------
+        int div(int a, int b) {
+        int count = a; -> O(1)
+        int sum = b; -> O(1)
+        while (sum <= a) { -> O(n)
+            sum += b; -> O(1)
+            count++; -> O(1)
+        }
+        return count; - O(1)
+    }
+
+    T = O(n), linear runtime
+
+    ------------------------------------
+        int sqrt(int n) {
+        return sqrt_helper(n, 1, n);
+    }
+    int sqrt_helper(int n, int min, int max) {
+        if (max < min) return -1;
+        int guess = (min + max) / 2;
+        if (guess * guess == n) {
+            return guess;
+        } else if (guess *guess <n) {
+            return sqrt_helper(n, guess + 1, max) ;
+        } else {
+            return sqrt_helper(n, min, guess - 1);
+        }
+    }
+
+    T = O(Log N) because it is doing essentially what a binary tree would do.
+
+    --------------------------------------
+
+        int[] copyArray(int[] array) {
+        int[] copy = new int[0];
+        for (int value : array) {
+            copy = appendToNew(copy, value); -> this for loop O(n) calls another function with a for loop,
+        }                                       there fore nˆ2*O(1), therefore O(nˆ2)
+        return copy;
+    }
+    int[] appendToNew(int[] array, int value) {
+        int[] bigger = new int[array.length + 1];
+        for (int I = 0; I < array. length; I++) {
+            bigger[I] = array[I];
+        }
+        bigger[bigger.length - 1] = value;
+        return bigger;
+    }
+
+    T = O(nˆ2)
+
+    ----------------------------------------
+        int fib(int n) {
+        if (n <= 0) return 0;
+        if (n == 1) return 1;
+        return fib(n - 1) + fib(n - 2);
+    }
+
+    algorithm with multiple recursive calls, therefore O(branchesˆdepth), O(2ˆn)
 
