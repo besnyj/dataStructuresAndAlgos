@@ -356,3 +356,57 @@ def search(arr, target):
         else:
             left = mid+1
     return -1 ## to show the target doesnt exist in the array.
+
+Complete Overview of Quicksort:
+
+- it is the so-called divide and conquer algorith. It selects a pivot element from the array and
+partion the other elements into two sub arrays, according to whether they are less than or greater
+than the pivot.
+- also called partition-exchange sort.
+- it implements a recursive function that implements 3 arguments.
+- doesnt work pretty well with many duplicates in the array
+
+EX: let's say you want to sort the following array [3,-2,-1,0,2,4,1] into [-2,-1,0,1,2,3,4]
+
+    - 1st step: set two pointers, L and R. L is at the first index and R is at the last index
+    - 2nd step: basecases, l >= r means the section of the array has only 1 element, then return
+    - pick partition and pivot
+    - in our case, if we select number 1, index 6, will be our pivot. It means that
+      every number bigger ou equal than our pivot will come after 1 and smaller will come before.
+    at the partition function, you should swap numbers in two sub arrays, the greater than the pivot
+    and smaller than the pivot. Then, return the index of the pivot in the new sorted array.
+
+arr = [-2,3,-1,5,4,-3,0]
+l = arr[0]
+r = arr[6]
+
+def partition(arr, l, r): # this is written in pseudocode
+    pivot = arr[r] ## this sets the last element of the array as the pivot.
+    i = l - 1
+    for j from l upto r - 1:
+        if arr[j] < pivot:
+            i += 1
+            swap arr[1] and arr[j]
+    swap arr[i+1] and arr[r]
+    return i + 1
+
+def qs(arr, l, r):
+    if l >= r:
+        return
+    p = partition(arr, l, r) # will set out pivot, then we will have to sort what comes before and after
+
+    qs(arr, l, p-1)
+    qs(arr, p+1, r)
+
+Time complexity of partition:
+- Worst case O(nˆ2)
+- Average case O(n)
+- Best case O(nlogn)
+
+- implementation details
+    - Choosing pivot:
+        pick a random element
+        pick the last element of the array
+        median of three: pick 3 random and pick the median of these three, reducing the chance of a bad pick
+    - Dealing with duplicates
+        3-way quicksort
