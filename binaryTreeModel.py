@@ -20,4 +20,5 @@ target = 11
 
 print(search(arr, target))
 
+# check notes if you have any doubt
 

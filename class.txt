@@ -293,3 +293,66 @@ Introduction to Big O Notation and Time Complexity:
 
 Introduction  to Trees:
 
+- trees are linked lists with only 1 reference that link to each node
+- tree is a structure where you can go from the root node to any other node, also no other node refers to the root
+
+class Node:
+    data
+    Node left
+    Node right
+
+- now, let's sum all the data in the nodes with a O(n) runtime
+
+def find_sum(root):
+    if root == None:
+        return 0
+    return root.data + find_sum(root.left) + find_sum(root.right)
+
+- non-empty universal value trees: tree which values are all the same
+
+Introduction to Binary Search:
+
+- searching algorithm used in a sorted array by repeatedly dividing the search interval in half
+
+Ex: Let's set an array = [-2,3,4,7,8,9,11,13] and a target of 11. We should create an algorithm
+    that return the index of the target in the given array. Doing on a linear search algorithm,
+    we could write it like this:
+
+        def search(arr, target):
+
+        for index, value in enumerate(arr):
+            if value == target:
+                return index
+        return -1
+
+    However, this solution has a O(n) runtime complexity. Then, let's make it a O(n/2), or, binary search:
+
+    Ex: we have an array [-50....50], target 20.
+
+    - 1st step: if the target exists, it is between the first and last element:
+        Then, we create two pointers: L and R.
+    - 2nd step: check the number in the middle of the array.
+        Because the number in the middle is 0, we can move our L pointer to 11
+        Now, we redo the process. However, if the middle number is larger than our target, we move R to the middle number.
+
+- time complexity of the given approach:
+    O(log2n) = O(logn)
+    therefore if we have 10,000,000 items in our array:
+    log2(10,000,000) ~ 24. So at most, we'll have only to check 24 numbers.
+
+    now let's code the solution:
+    Let's set an array = [-2,3,4,7,8,9,11,13] and a target of 11
+
+def search(arr, target):
+    left = 0  ## index fo the pointer
+    right = len(arr)-1 ## index of the pointer
+    while left <= right:
+        mid = (left + right)/2 ## if it is not an integer, round it DOWN.
+                               ## the result is the INDEX of the number in the middle, to the number itself
+        if arr[mid] == target:
+            return mid
+        if target < arr[mid]:
+            right = mid-1
+        else:
+            left = mid+1
+    return -1 ## to show the target doesnt exist in the array.
