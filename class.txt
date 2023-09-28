@@ -410,3 +410,17 @@ Time complexity of partition:
         median of three: pick 3 random and pick the median of these three, reducing the chance of a bad pick
     - Dealing with duplicates
         3-way quicksort
+
+Introduction to Stack and Queues:
+
+- Stacks are like pancakes, they work as a last in first out system.
+- it is a collection of data in which we can only add a piece of data on the top of
+    the structure and retrieve data only from the top.
+- can be implemented using an array and using pointers.
+- a queue, as seen before, works as a real queue, first in first out system.
+- also implemented with an array, but now uses two pointers. However, when using stacks and having
+    to store more elements than the lenght of the satck, you will have to create another stack.
+    In the case of queue, the next item to be added will be allocated at the beginning of the array.
+- both of the data structures are O(1)
+- deque/double ended queue: can remove elements on the two points and also add elements at the beginning and
+    the end of the array.

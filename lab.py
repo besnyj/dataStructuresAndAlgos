@@ -1,23 +1,33 @@
-import math
+def check(self):
 
-def search(arr, target):
+    openend, closed = "([{", ")]}"
 
-    left = 0
-    right = len(arr) - 1
-    while left <= right:
-        mid = (left + right) / 2
-        mid = math.floor(mid)
-        if arr[mid] == target:
-            return mid
-        if arr[mid] > target:
-            right = mid-1
-        else:
-            left = mid+1
-    return -1
+    if self[0] in closed: return False
 
-arr = [-2,3,4,7,8,9,11,13]
-target = 11
+    charDict = {
+        ")":"(",
+        "]":"[",
+        "}":"{"
+    }
 
-print(search(arr, target))
+    stack = []
+
+    for charValue in self:
+
+        if charValue in openend:
+            stack.append(charValue)
+        if charValue in closed:
+            if charDict[charValue] != stack[-1]:
+                return False
+            if charDict[charValue] == stack[-1]:
+                stack.pop()
+
+    return True
 
 
+
+paren1 = "([])"
+paren2 = "[(])"
+paren3 = ")("
+
+print(check(paren3))
