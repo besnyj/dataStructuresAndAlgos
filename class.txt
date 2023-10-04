@@ -424,3 +424,73 @@ Introduction to Stack and Queues:
 - both of the data structures are O(1)
 - deque/double ended queue: can remove elements on the two points and also add elements at the beginning and
     the end of the array.
+
+Introduction to Hash Tables and Dictionaries:
+
+- Dict is a structure of data made of key/value pairs, so that we can retrieve the value of the keys quickly.
+- We can also define more operations.
+    - insert: adding a new key/value.
+    - delete: self explanatory.
+    - search.
+    * we need to implement these features with a O(1) complexity.
+
+- Building a hash table:
+
+genericDict = {
+    "Paul":"29",
+    "Jane":"35",
+    "Chloe":"88",
+    "Alex":"18"
+}
+
+- Now, we have to decide the position of our key/values in an array. Let's take as example an array of lenght 8:
+
+[_,_,_,_,_,_,_,_]
+
+- As we have the array, we can arrange our key/values as we wish. The third column represents the position of
+    each k/v in the array:
+
+genericDict = {
+    "Paul":"29", 7,
+    "Jane":"35", 1,
+    "Chloe":"88", 2,
+    "Alex":"18", 0
+}
+
+- Therefore, our array is now a hashtable:
+
+[Alex 18, Jane 35, Chloe 88,_,_,_,_Paul 29]
+
+- To decide the position of the items in the array, we create a hash function.
+    - needs to be fast to compute.
+    - avoid collisions (more than 1 key/value in the same bucket)
+
+- Chaining: instead of storing the items in an array, we store them in a linked link and from each element in the
+    array we will have a pointer to the next item in the linked list.
+Ex: [_,Jane 38,_,....]
+    [_,Jane 38->Chloe 88->Alex 18, ....]
+- Insertion: O(1)
+- search = O(1+a), a = length of the array/elements in the array
+
+- Open addressing:
+    - linear probing:
+        - store the value in a linear way. When we have a collision, we check the element to the right subsequently
+        until we find it empty, and then we fill it with the colliding element.
+        * however, if we have a cluster, it is going to take much time to compute.
+            for this problem, we use double hashing:
+    - instead of jumping ahead to the right, we piuck a number to check how many elements ahead we want.
+        Ex: if we pick 3, we will always check the third element after the collision point. If it doesnt
+            exist, we jump back to the beginning of the list.
+
+- i = h1(key) mod 8
+- (i + c) mod 8
+- (i + 2c) mod 8
+
+- greatest common divider: gcd(c, m) = 1
+- always set M (length of the arr) as a prime number, and C a positive integer less than M
+- c <- {h2(key) mod(m-1)} + 1
+- h2(key) = h1(key+'d')
+- h2(key) = h1(key)
+
+- search = (1/(1-a))
+- insertion (1/(1-a))
