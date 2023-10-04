@@ -1,18 +1,22 @@
-import math
+def finddouble(s):
 
-def binsearch(arr, target):
+    dict = {}
 
-    left = 0
-    right = len(arr) - 1
+    for letter in s:
+        if letter in dict:
+            return letter
+        if letter not in dict:
+            dict[f"{letter}"] = 1
+    return None
 
-    while left <= right:
-        mid = (left + right) / 2
-        mid = math.floor(mid)
-        if arr[mid] == target:
-            return mid
-        if arr[mid] > target:
-            right = mid - 1
-        else:
-            left = mid + 1
-    return -1
+print(finddouble("DBCABA"))
 
+dict = {
+    "": ,
+    "": ,
+    "": ,
+    "": ,
+    "": ,
+    "": ,
+    "":
+}

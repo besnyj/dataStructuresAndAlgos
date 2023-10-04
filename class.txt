@@ -494,3 +494,20 @@ Ex: [_,Jane 38,_,....]
 
 - search = (1/(1-a))
 - insertion (1/(1-a))
+
+*** Algorithms to study next ***
+
+* What does transverse mean
+
+1. Depth First Search, sort used to solve tree or graph structure problems.
+2. Breadth First Search, differs from the 1. by using opposite method with a queue.
+3. Matching Parenthesis, this is in almost every single interview.
+4. Hash Tables, useful for matrix and for keeping track of what you already visited.
+5. How to manipulate variables/pointers at once. Ex: longest palindome number in an string.
+6. Reversing Link List, needs 3 different pointers.
+7. Sorting Fundamentals, sorting algorithms
+8. Recursion. Already learned but check again.
+9. Custom Data structures.
+10. Binary Search. Also already learned, but it is good to review this topic
+
+
